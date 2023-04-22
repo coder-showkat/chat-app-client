@@ -1,5 +1,4 @@
 import React from "react";
-import { BsPower } from "react-icons/bs";
 
 const ChatHeader = () => {
   return (
@@ -12,9 +11,6 @@ const ChatHeader = () => {
         />
         <span>Showkat</span>
       </h1>
-      <span className="btn btn-accent btn-square text-lg">
-        <BsPower className="text-white" />
-      </span>
     </div>
   );
 };
