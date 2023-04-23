@@ -89,6 +89,12 @@
   }
 }
 
+.react-input-emoji--container {
+  background-color: transparent !important;
+  border: 2px solid #4e0ba6 !important;
+  color: #9d87cf !important;
+}
+
 @layer base {
   body {
     @apply text-primary;

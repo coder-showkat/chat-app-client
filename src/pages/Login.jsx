@@ -19,6 +19,7 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setRedirect(true);
 
     try {
       const result = await axios.post("http://localhost:4001/user/login", {
@@ -27,7 +28,7 @@ const Login = () => {
       });
 
       if (result.status === 200) {
-        setRedirect(true);
+        toastSuccess("Login successful!");
         const token = result.data.token;
         const user = result.data.user;
         dispatch(setUser({ token, user }));
@@ -41,8 +42,7 @@ const Login = () => {
 
   if (loading) return <Spinner />;
   if (user) {
-    if (redirect) toastSuccess("Login successful!");
-    else toastError("You are already logged in");
+    if (!redirect) toastError("You are already logged in");
     return <Navigate to="/" replace={true} />;
   }
 

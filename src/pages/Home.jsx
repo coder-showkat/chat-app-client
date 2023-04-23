@@ -23,14 +23,14 @@ const Home = () => {
   if (loading) return <Spinner />;
   if (!user) {
     if (redirect) toastSuccess("Logout successful!");
-    else toastError("Please login first to visit this page");
+    else toastError("Please login first");
     return <Navigate to="/login" replace={true} />;
   }
 
   return (
     <div className="bg-base-100">
       <div className="flex space-x-6 container mx-auto">
-        <SideBar />
+        <SideBar user={user} />
         <div className="flex-1 min-h-screen relative">
           <div className="dropdown dropdown-bottom dropdown-end absolute top-4 right-4 z-50">
             <label tabIndex={0} className="btn m-1 btn-accent btn-square">
@@ -49,7 +49,7 @@ const Home = () => {
               </li>
             </ul>
           </div>
-          <Outlet />
+          <Outlet user={user} />
         </div>
       </div>
     </div>

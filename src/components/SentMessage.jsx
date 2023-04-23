@@ -1,6 +1,9 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { format } from "timeago.js";
 
-const SentMessage = () => {
+const SentMessage = ({ msg }) => {
+  const user = useSelector((state) => state.userReducer.user);
   return (
     <div className="chat chat-end">
       <div className="chat-image avatar">
@@ -8,12 +11,9 @@ const SentMessage = () => {
           <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
         </div>
       </div>
-      <div className="chat-header">
-        Anakin
-        <time className="text-xs opacity-50">12:46</time>
-      </div>
-      <div className="chat-bubble">I hate you!</div>
-      <div className="chat-footer opacity-50">Seen at 12:46</div>
+      <div className="chat-header">{user.username}</div>
+      <div className="chat-bubble">{msg.text}</div>
+      <div className="chat-footer opacity-50">{format(msg.createdAt)}</div>
     </div>
   );
 };
