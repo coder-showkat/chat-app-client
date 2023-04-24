@@ -1,21 +1,28 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 
-const Conversation = ({ chat, userId }) => {
-  const [username, setUsername] = useState("");
+const Conversation = ({ chat, setOpenMenu }) => {
+  const [fullname, setFullname] = useState("");
+  const [avatar, setAvatar] = useState(null);
+  const [selectedUserId, setSelectedUserId] = useState(null);
+  const { _id } = useSelector((state) => state.userReducer.user);
 
   const navigate = useNavigate();
+  const params = useParams();
 
   useEffect(() => {
     const getConnectionInfo = async () => {
-      const id = chat.members.find((id) => id !== userId);
+      const id = chat.members.find((id) => id !== _id);
       try {
         const result = await axios.get(
           `http://localhost:4001/user/connectionInfo/${id}`
         );
 
-        setUsername(result.data);
+        setSelectedUserId(id);
+        setFullname(result.data.fullname);
+        setAvatar(result.data.avatar);
       } catch (error) {
         console.log(error);
       }
@@ -24,13 +31,16 @@ const Conversation = ({ chat, userId }) => {
     getConnectionInfo();
   }, []);
 
+  // open inbox on click conversation
   const openConversation = () => {
-    navigate(`/chat/${username}`, {
+    setOpenMenu(false);
+    navigate(`/chat/${selectedUserId}`, {
       replace: true,
       state: {
-        username,
+        fullname,
         chat,
-        userId,
+        userId: _id,
+        avatar,
       },
     });
   };
@@ -38,14 +48,19 @@ const Conversation = ({ chat, userId }) => {
   return (
     <li
       onClick={openConversation}
-      className={`flex cursor-pointer items-center gap-x-4 font-semibold text-xl text-white rounded-md p-2 bg-neutral/40`}
+      className={`flex cursor-pointer items-center gap-x-4 font-semibold text-xl text-white rounded-md p-2 ${
+        selectedUserId === params.id ? "bg-neutral" : "bg-neutral/40"
+      }`}
     >
       <img
-        src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
+        src={
+          avatar ||
+          "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
+        }
         alt=""
         className="w-12 h-12 border-2 border-accent rounded-full"
       />
-      <span>{username}</span>
+      <span>{fullname}</span>
     </li>
   );
 };

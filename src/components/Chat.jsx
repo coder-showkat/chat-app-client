@@ -1,53 +1,84 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useLocation } from "react-router-dom";
+import { io } from "socket.io-client";
+import { addMessage, fetchMessages } from "../redux/features/messageSlice";
 import ChatHeader from "./ChatHeader";
 import ChatInputBox from "./ChatInputBox";
 import ReceivedMessage from "./ReceivedMessage";
 import SentMessage from "./SentMessage";
 
+const ENDPOINT = "http://localhost:4001";
+
 const Chat = () => {
-  const [messages, setMessages] = useState([]);
+  const messages = useSelector((state) => state.messageReducer.messages);
+  const [newMessage, setNewMessage] = useState(null);
 
+  const dispatch = useDispatch();
   const location = useLocation();
-  if (!location.state) return <Navigate to="/" replace={true} />;
+  const { fullname, chat, userId, avatar } = location.state;
+  const socket = useRef();
+  const chatContainerRef = useRef(null);
+  const smoothScroll = useRef();
 
-  const { username, chat, userId } = location.state;
+  const chatId = chat._id;
 
   useEffect(() => {
-    const initMessages = async () => {
-      try {
-        const result = await axios.get(
-          `http://localhost:4001/message/${chat._id}`
-        );
+    smoothScroll.current = false;
+    dispatch(fetchMessages(chatId));
+  }, [chatId]);
 
-        setMessages(result.data);
-      } catch (error) {
-        console.log(error.message);
-      }
+  useEffect(() => {
+    chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+  }, [messages]);
+
+  // receive msg from socket server
+  useEffect(() => {
+    socket.current = io(ENDPOINT);
+
+    socket.current.on("message", (msg) => {
+      if (msg) setNewMessage(msg);
+    });
+
+    return () => {
+      socket.current.disconnect();
     };
+  }, []);
 
-    initMessages();
-  }, [chat]);
+  useEffect(() => {
+    if (newMessage && newMessage.chatId === chatId) {
+      if (!smoothScroll.current) smoothScroll.current = true;
+      dispatch(addMessage(newMessage));
+    }
+  }, [newMessage]);
+
+  if (!location.state) return <Navigate to="/" replace={true} />;
 
   return (
     <div className="h-full p-4 relative">
-      <ChatHeader username={username} />
-      <div className="py-6 pb-16 h-[calc(100vh-150px)] overflow-y-auto">
+      <ChatHeader fullname={fullname} avatar={avatar} />
+      <div
+        className={`py-6 pb-16 h-[calc(100vh-150px)] overflow-y-auto ${
+          smoothScroll.current ? "scroll-smooth" : "scroll-auto"
+        }`}
+        ref={chatContainerRef}
+      >
         {messages.map((message) => {
-          return message.senderId === userId ? (
-            <SentMessage key={message._id} msg={message} />
-          ) : (
-            <ReceivedMessage
-              key={message._id}
-              msg={message}
-              username={username}
-            />
-          );
+          if (message.chatId === chatId)
+            return message.senderId === userId ? (
+              <SentMessage key={message._id} msg={message} />
+            ) : (
+              <ReceivedMessage
+                key={message._id}
+                msg={message}
+                fullname={fullname}
+                avatar={avatar}
+              />
+            );
         })}
       </div>
 
-      <ChatInputBox chatId={chat._id} />
+      <ChatInputBox chat={chat} socket={socket} />
     </div>
   );
 };
