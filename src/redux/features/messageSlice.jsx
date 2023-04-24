@@ -4,7 +4,9 @@ import axios from "axios";
 export const fetchMessages = createAsyncThunk(
   "message/fetchMessages",
   async (chatId) => {
-    const result = await axios.get(`http://localhost:4001/message/${chatId}`);
+    const result = await axios.get(
+      `https://chat-app-16g8.onrender.com/message/${chatId}`
+    );
     return result.data;
   }
 );

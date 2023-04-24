@@ -24,7 +24,7 @@ const SideBar = ({ user }) => {
     const token = localStorage.getItem("token");
     try {
       const result = await axios.post(
-        `http://localhost:4001/chat/${searchParam}`,
+        `https://chat-app-16g8.onrender.com/chat/${searchParam}`,
         {},
         {
           headers: {

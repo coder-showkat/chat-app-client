@@ -7,11 +7,14 @@ export const fetchChatList = createAsyncThunk(
     try {
       const token = localStorage.getItem("token");
       if (token) {
-        const result = await axios.get("http://localhost:4001/chat", {
-          headers: {
-            Authorization: token,
-          },
-        });
+        const result = await axios.get(
+          "https://chat-app-16g8.onrender.com/chat",
+          {
+            headers: {
+              Authorization: token,
+            },
+          }
+        );
 
         if (result.status === 200) {
           const chatList = result.data;

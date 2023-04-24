@@ -5,11 +5,14 @@ export const fetchUser = createAsyncThunk("user/fetchUser", async () => {
   try {
     const token = localStorage.getItem("token");
     if (token) {
-      const result = await axios.get("http://localhost:4001/user/info", {
-        headers: {
-          Authorization: token,
-        },
-      });
+      const result = await axios.get(
+        "https://chat-app-16g8.onrender.com/user/info",
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      );
 
       if (result.status === 200) {
         const user = result.data;

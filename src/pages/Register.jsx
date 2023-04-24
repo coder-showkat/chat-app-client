@@ -67,7 +67,7 @@ const Register = () => {
       formData.set("password", password);
 
       const result = await axios.post(
-        "http://localhost:4001/user/register",
+        "https://chat-app-16g8.onrender.com/user/register",
         formData,
         {
           headers: {

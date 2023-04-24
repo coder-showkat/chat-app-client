@@ -17,7 +17,7 @@ const Conversation = ({ chat, setOpenMenu }) => {
       const id = chat.members.find((id) => id !== _id);
       try {
         const result = await axios.get(
-          `http://localhost:4001/user/connectionInfo/${id}`
+          `https://chat-app-16g8.onrender.com/user/connectionInfo/${id}`
         );
 
         setSelectedUserId(id);

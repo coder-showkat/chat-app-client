@@ -18,7 +18,7 @@ const ChatInputBox = ({ chat, socket }) => {
     const token = localStorage.getItem("token");
     try {
       const result = await axios.post(
-        "http://localhost:4001/message",
+        "https://chat-app-16g8.onrender.com/message",
         { chatId: chat._id, text: newMessage },
         {
           headers: {

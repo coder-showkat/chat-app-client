@@ -22,10 +22,13 @@ const Login = () => {
     setRedirect(true);
 
     try {
-      const result = await axios.post("http://localhost:4001/user/login", {
-        email,
-        password,
-      });
+      const result = await axios.post(
+        "https://chat-app-16g8.onrender.com/user/login",
+        {
+          email,
+          password,
+        }
+      );
 
       if (result.status === 200) {
         toastSuccess("Login successful!");
