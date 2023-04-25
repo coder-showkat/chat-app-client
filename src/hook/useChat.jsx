@@ -4,6 +4,7 @@ import { fetchChatList } from "../redux/features/chatSlice";
 
 const useChat = () => {
   const chatList = useSelector((state) => state.chatListReducer.chatList);
+  const chatlistLoading = useSelector((state) => state.chatListReducer.loading);
 
   const dispatch = useDispatch();
 
@@ -11,7 +12,7 @@ const useChat = () => {
     dispatch(fetchChatList());
   }, []);
 
-  return { chatList };
+  return { chatList, chatlistLoading };
 };
 
 export default useChat;

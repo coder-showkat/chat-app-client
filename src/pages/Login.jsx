@@ -12,6 +12,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [redirect, setRedirect] = useState(false);
+  const [loginLoading, setLoginLoading] = useState(false);
 
   const { user, loading } = useGetUser();
 
@@ -20,6 +21,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     setRedirect(true);
+    setLoginLoading(true);
 
     try {
       const result = await axios.post(
@@ -40,10 +42,13 @@ const Login = () => {
       }
     } catch (error) {
       toastError(error.response.data.error);
+    } finally {
+      setLoginLoading(false);
     }
   };
 
   if (loading) return <Spinner />;
+  if (loginLoading) return <Spinner />;
   if (user) {
     if (!redirect) toastError("You are already logged in");
     return <Navigate to="/" replace={true} />;

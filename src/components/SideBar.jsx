@@ -8,11 +8,12 @@ import useChat from "../hook/useChat";
 import { addChatList } from "../redux/features/chatSlice";
 import { toastError } from "../utilities/toastify";
 import Conversation from "./Conversation";
+import Spinner from "./Spinner";
 
 const SideBar = ({ user }) => {
   const [searchParam, setSearchParam] = useState("");
   const [openMenu, setOpenMenu] = useState(false);
-  const { chatList } = useChat();
+  const { chatList, chatlistLoading } = useChat();
   const dispatch = useDispatch();
 
   // add new connection by email
@@ -87,6 +88,7 @@ const SideBar = ({ user }) => {
 
         {/* chat list */}
         <div>
+          {chatlistLoading && <Spinner />}
           <ul className="space-y-4 h-[calc(100vh-180px)] md:pr-3 md:border-r-4 border-neutral overflow-y-scroll">
             {chatList.map((chat) => (
               <Conversation

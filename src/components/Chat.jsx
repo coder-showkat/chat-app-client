@@ -7,11 +7,13 @@ import ChatHeader from "./ChatHeader";
 import ChatInputBox from "./ChatInputBox";
 import ReceivedMessage from "./ReceivedMessage";
 import SentMessage from "./SentMessage";
+import Spinner from "./Spinner";
 
 const ENDPOINT = "https://chat-app-socket-224c.onrender.com/";
 
 const Chat = () => {
   const messages = useSelector((state) => state.messageReducer.messages);
+  const messageLoading = useSelector((state) => state.messageReducer.loading);
   const [newMessage, setNewMessage] = useState(null);
 
   const dispatch = useDispatch();
@@ -67,6 +69,7 @@ const Chat = () => {
         }`}
         ref={chatContainerRef}
       >
+        {messageLoading && <Spinner />}
         {messages.map((message) => {
           if (message.chatId === chatId)
             return message.senderId === userId ? (
