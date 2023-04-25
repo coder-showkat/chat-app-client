@@ -89,7 +89,7 @@ const SideBar = ({ user }) => {
 
         {/* chat list */}
         <div>
-          <ul className="space-y-4 h-[calc(100vh-180px)] pr-3 md:border-r-4 border-neutral overflow-y-scroll">
+          <ul className="space-y-4 h-[calc(100vh-180px)] md:pr-3 md:border-r-4 border-neutral overflow-y-scroll">
             {chatList.map((chat) => (
               <Conversation
                 key={chat._id}
