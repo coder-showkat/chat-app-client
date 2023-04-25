@@ -43,7 +43,7 @@ const ChatInputBox = ({ chat, socket }) => {
 
   return (
     <>
-      <div className="absolute bottom-4 left-0 right-0 p-4 md:px-8 form-control flex flex-row gap-x-2 md:gap-x-3 items-center">
+      <div className="absolute bottom-4 bg-base-100 left-0 right-0 p-4 md:px-8 form-control flex flex-row gap-x-2 md:gap-x-3 items-center">
         <button>
           <BsPlus className="text-4xl text-accent" />
         </button>

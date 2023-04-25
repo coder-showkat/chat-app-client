@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { BsChatText } from "react-icons/bs";
 import { RiMenuFoldLine, RiMenuUnfoldLine } from "react-icons/ri";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import useChat from "../hook/useChat";
 import { addChatList } from "../redux/features/chatSlice";
 import { toastError } from "../utilities/toastify";
@@ -64,7 +65,7 @@ const SideBar = ({ user }) => {
           <span className="flex justify-center items-center w-10 h-10 bg-accent p-3 rounded-xl">
             <BsChatText className="text-white" />
           </span>
-          SAM
+          <Link to="/">SAM</Link>
         </h1>
 
         {/* add user input box */}

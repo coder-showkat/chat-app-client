@@ -97,6 +97,6 @@
 
 @layer base {
   body {
-    @apply text-primary;
+    @apply text-primary overflow-hidden;
   }
 }
