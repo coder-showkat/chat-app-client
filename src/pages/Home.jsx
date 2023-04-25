@@ -31,9 +31,9 @@ const Home = () => {
 
   return (
     <div className="bg-base-100">
-      <div className="flex space-x-6 max-w-screen-2xl mx-auto relative">
+      <div className="flex gap-x-6 max-w-screen-2xl mx-auto relative">
         <SideBar user={user} />
-        <div className="flex-1 min-h-screen relative">
+        <div className="flex-1 min-h-[100dvh] relative">
           {/* dropdown menu for logout and profile info */}
           <div className="dropdown dropdown-bottom dropdown-end absolute top-4 right-20 md:right-4 z-50">
             <label tabIndex={0} className="btn m-1 btn-accent btn-square">
