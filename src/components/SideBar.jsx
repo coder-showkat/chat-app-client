@@ -58,7 +58,7 @@ const SideBar = ({ user }) => {
         {/* logo */}
         <h1
           onClick={() => setOpenMenu(false)}
-          className="w-fit sm:mx-auto text-3xl text-white flex items-center gap-x-4 font-bold mb-5"
+          className="w-fit text-3xl text-white flex items-center gap-x-4 font-bold mb-5"
         >
           <span className="flex justify-center items-center w-10 h-10 bg-accent p-3 rounded-xl">
             <BsChatText className="text-white" />
