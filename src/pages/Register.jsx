@@ -122,7 +122,7 @@ const Register = () => {
             className="w-20 h-20 p-1 rounded-full mx-auto relative bg-primary"
           >
             <img
-              className="w-full rounded-full"
+              className="w-full h-full object-cover rounded-full"
               src={
                 imgUrl ||
                 "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
