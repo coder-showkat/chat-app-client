@@ -5,7 +5,7 @@ const ReceivedMessage = ({ msg, fullname, avatar }) => {
   const [seeDetails, setSeeDetails] = useState(false);
   return (
     <div className="chat chat-start">
-      <div className="chat-image avatar">
+      {/* <div className="chat-image avatar">
         <div className="w-10 rounded-full">
           <img
             src={
@@ -14,7 +14,7 @@ const ReceivedMessage = ({ msg, fullname, avatar }) => {
             }
           />
         </div>
-      </div>
+      </div> */}
       {seeDetails && (
         <div className="chat-header">{fullname.split(" ")[0]}</div>
       )}

@@ -7,7 +7,7 @@ const SentMessage = ({ msg }) => {
   const user = useSelector((state) => state.userReducer.user);
   return (
     <div className="chat chat-end">
-      <div className="chat-image avatar">
+      {/* <div className="chat-image avatar">
         <div className="w-10 rounded-full">
           <img
             src={
@@ -16,7 +16,7 @@ const SentMessage = ({ msg }) => {
             }
           />
         </div>
-      </div>
+      </div> */}
       {seeDetails && (
         <div className="chat-header">{user.fullname.split(" ")[0]}</div>
       )}
