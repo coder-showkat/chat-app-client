@@ -50,7 +50,7 @@ const Login = () => {
   }
 
   return (
-    <div className="p-4 sm:p-12 min-h-[calc(100vh-20px)] sm:min-h-screen flex flex-col">
+    <div className="p-4 sm:p-12 min-h-[calc(100vh-30px)] sm:min-h-screen flex flex-col">
       <div className="sm:border-2 border-neutral max-w-lg w-full rounded-3xl p-6 sm:p-14 m-auto">
         <h1 className="w-fit mx-auto text-4xl text-white flex items-center gap-x-6 font-bold mb-8">
           <span className="flex justify-center items-center w-12 h-12 bg-accent p-3 rounded-xl">
