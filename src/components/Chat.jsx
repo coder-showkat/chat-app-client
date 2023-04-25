@@ -8,7 +8,7 @@ import ChatInputBox from "./ChatInputBox";
 import ReceivedMessage from "./ReceivedMessage";
 import SentMessage from "./SentMessage";
 
-const ENDPOINT = "http://localhost:4001";
+const ENDPOINT = "https://chat-app-socket-224c.onrender.com/";
 
 const Chat = () => {
   const messages = useSelector((state) => state.messageReducer.messages);
