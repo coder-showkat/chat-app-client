@@ -15,11 +15,6 @@ const SideBar = ({ user }) => {
   const { chatList } = useChat();
   const dispatch = useDispatch();
 
-  //handle chat menu
-  const handleChatMenu = () => {
-    setOpenMenu(!openMenu);
-  };
-
   // add new connection by email
   const handleAddUser = async () => {
     const token = localStorage.getItem("token");
@@ -45,7 +40,7 @@ const SideBar = ({ user }) => {
     <>
       {/* hamberger menu */}
       <div
-        onClick={handleChatMenu}
+        onClick={() => setOpenMenu(!openMenu)}
         className="btn btn-square btn-accent text-xl absolute flex md:hidden right-5 top-5 z-[999]"
       >
         {openMenu ? (
@@ -61,7 +56,10 @@ const SideBar = ({ user }) => {
         }`}
       >
         {/* logo */}
-        <h1 className="w-fit sm:mx-auto text-3xl text-white flex items-center gap-x-4 font-bold mb-5">
+        <h1
+          onClick={() => setOpenMenu(false)}
+          className="w-fit sm:mx-auto text-3xl text-white flex items-center gap-x-4 font-bold mb-5"
+        >
           <span className="flex justify-center items-center w-10 h-10 bg-accent p-3 rounded-xl">
             <BsChatText className="text-white" />
           </span>
