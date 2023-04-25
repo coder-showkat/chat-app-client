@@ -97,6 +97,6 @@
 
 @layer base {
   body {
-    @apply text-primary overflow-hidden;
+    @apply text-primary overflow-hidden sm:overflow-auto;
   }
 }

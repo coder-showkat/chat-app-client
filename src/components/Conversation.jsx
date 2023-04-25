@@ -41,6 +41,7 @@ const Conversation = ({ chat, setOpenMenu }) => {
         chat,
         userId: _id,
         avatar,
+        selectedUserId,
       },
     });
   };

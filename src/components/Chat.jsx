@@ -16,7 +16,7 @@ const Chat = () => {
 
   const dispatch = useDispatch();
   const location = useLocation();
-  const { fullname, chat, userId, avatar } = location.state;
+  const { fullname, chat, userId, avatar, selectedUserId } = location.state;
   const socket = useRef();
   const chatContainerRef = useRef(null);
   const smoothScroll = useRef();
@@ -46,7 +46,11 @@ const Chat = () => {
   }, []);
 
   useEffect(() => {
-    if (newMessage && newMessage.chatId === chatId) {
+    if (
+      newMessage &&
+      newMessage.chatId === chatId &&
+      newMessage.senderId === selectedUserId
+    ) {
       if (!smoothScroll.current) smoothScroll.current = true;
       dispatch(addMessage(newMessage));
     }
@@ -78,7 +82,7 @@ const Chat = () => {
         })}
       </div>
 
-      <ChatInputBox chat={chat} socket={socket} />
+      <ChatInputBox chat={chat} socket={socket} smoothScroll={smoothScroll} />
     </div>
   );
 };

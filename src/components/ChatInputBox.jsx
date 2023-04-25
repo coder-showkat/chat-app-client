@@ -2,11 +2,11 @@ import axios from "axios";
 import React, { useState } from "react";
 import { BsPlus, BsSendFill } from "react-icons/bs";
 import InputEmoji from "react-input-emoji";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { addMessage } from "../redux/features/messageSlice";
 
-const ChatInputBox = ({ chat, socket }) => {
+const ChatInputBox = ({ chat, socket, smoothScroll }) => {
   const [newMessage, setNewMessage] = useState("");
-  const user = useSelector((state) => state.userReducer.user);
   const dispatch = useDispatch();
 
   // send message handler
@@ -27,15 +27,15 @@ const ChatInputBox = ({ chat, socket }) => {
         }
       );
 
+      // to see sent message in real time
+      if (!smoothScroll.current) smoothScroll.current = true;
+      dispatch(addMessage(result.data));
+
+      // send message to socket server
       socket.current.emit("message", result.data);
 
-      // to see sender message in real time
-      // dispatch(addMessage(result.data));
+      // clear input field
       setNewMessage("");
-
-      // send sender message to socket server
-      // const receiverId = chat.members.find((id) => id !== user._id);
-      // socket.current.emit("send-message", { ...result.data, receiverId });
     } catch (error) {
       console.log(error.message);
     }
