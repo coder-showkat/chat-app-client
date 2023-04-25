@@ -77,6 +77,10 @@
   color: #9d87cf !important;
 }
 
+.react-input-emoji--button {
+  @apply !hidden md:!block;
+}
+
 @layer base {
   body {
     @apply text-primary overflow-hidden sm:overflow-auto;
