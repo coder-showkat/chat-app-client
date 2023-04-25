@@ -15,7 +15,7 @@ const ReceivedMessage = ({ msg, fullname, avatar }) => {
         </div>
       </div>
       <div className="chat-header">{fullname.split(" ")[0]}</div>
-      <div className="chat-bubble">{msg.text}</div>
+      <div className="chat-bubble bg-[#2d2d56]">{msg.text}</div>
       <div className="chat-footer opacity-50">{format(msg.createdAt)}</div>
     </div>
   );
