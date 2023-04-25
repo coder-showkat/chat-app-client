@@ -56,7 +56,7 @@ const SideBar = ({ user }) => {
       </div>
 
       <div
-        className={`p-4 bg-base-100 w-[320px] left-0 absolute md:translate-x-0 md:max-w-sm md:w-auto  md:static lg:flex-1 z-40 duration-300 h-full ${
+        className={`p-4 bg-base-100 w-screen left-0 absolute md:translate-x-0 md:max-w-sm md:w-auto md:static lg:flex-1 z-40 duration-300 h-full ${
           openMenu ? "translate-x-0" : "-translate-x-[650px]"
         }`}
       >
@@ -89,7 +89,7 @@ const SideBar = ({ user }) => {
 
         {/* chat list */}
         <div>
-          <ul className="space-y-4 h-[calc(100vh-180px)] pr-3 border-r-4 border-neutral overflow-y-scroll">
+          <ul className="space-y-4 h-[calc(100vh-180px)] pr-3 md:border-r-4 border-neutral overflow-y-scroll">
             {chatList.map((chat) => (
               <Conversation
                 key={chat._id}
