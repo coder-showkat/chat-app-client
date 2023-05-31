@@ -3,17 +3,17 @@ import React from "react";
 const Spinner = () => {
   return (
     <div className="flex flex-col justify-center items-center h-[calc(100vh-30px)] sm:h-screen">
-      <div class="center">
-        <div class="wave"></div>
-        <div class="wave"></div>
-        <div class="wave"></div>
-        <div class="wave"></div>
-        <div class="wave"></div>
-        <div class="wave"></div>
-        <div class="wave"></div>
-        <div class="wave"></div>
-        <div class="wave"></div>
-        <div class="wave"></div>
+      <div className="center">
+        <div className="wave"></div>
+        <div className="wave"></div>
+        <div className="wave"></div>
+        <div className="wave"></div>
+        <div className="wave"></div>
+        <div className="wave"></div>
+        <div className="wave"></div>
+        <div className="wave"></div>
+        <div className="wave"></div>
+        <div className="wave"></div>
       </div>
     </div>
   );

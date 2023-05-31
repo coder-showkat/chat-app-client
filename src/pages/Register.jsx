@@ -67,7 +67,7 @@ const Register = () => {
       formData.set("password", password);
 
       const result = await axios.post(
-        "https://chat-app-16g8.onrender.com/user/register",
+        "https://chat-app-sam.vercel.app/user/register",
         formData,
         {
           headers: {

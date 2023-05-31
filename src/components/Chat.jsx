@@ -9,7 +9,7 @@ import ReceivedMessage from "./ReceivedMessage";
 import SentMessage from "./SentMessage";
 import Spinner from "./Spinner";
 
-const ENDPOINT = "https://chat-app-socket-224c.onrender.com/";
+const ENDPOINT = "https://chat-app-socket-224c.onrender.com";
 
 const Chat = () => {
   const messages = useSelector((state) => state.messageReducer.messages);

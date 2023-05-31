@@ -6,7 +6,7 @@ export const fetchUser = createAsyncThunk("user/fetchUser", async () => {
     const token = localStorage.getItem("token");
     if (token) {
       const result = await axios.get(
-        "https://chat-app-16g8.onrender.com/user/info",
+        "https://chat-app-sam.vercel.app/user/info",
         {
           headers: {
             Authorization: token,

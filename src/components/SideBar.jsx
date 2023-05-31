@@ -21,7 +21,7 @@ const SideBar = ({ user }) => {
     const token = localStorage.getItem("token");
     try {
       const result = await axios.post(
-        `https://chat-app-16g8.onrender.com/chat/${searchParam}`,
+        `https://chat-app-sam.vercel.app/chat/${searchParam}`,
         {},
         {
           headers: {
